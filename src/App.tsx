@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Switch, HashRouter } from 'react-router-dom'
-import { AddProductPage } from './Pages/AddProductPage';
-import { HomePage } from './Pages/HomePage';
-import { ProductItemPage } from './Pages/ProductItemPage';
-import { ProductsPage } from './Pages/ProductsPage';
-import { UpdateProductPage } from './Pages/UpdateProductPage';
+import { 
+  AddProductPage, 
+  HomePage, 
+  ProductItemPage, 
+  ProductsPage, 
+  UpdateProductPage
+} from './Pages';
 
 function App() {
   return (
