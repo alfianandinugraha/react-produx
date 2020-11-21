@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Lenovo Thinkpad T440p",
+      "description": "Laptop suitable for coding with 8GB RAM and Intel Core i5",
+      "price": 3150000,
+      "createdAt": 1605932088,
+      "updatedAt": 1605932088
+    }
+  ]
+}
