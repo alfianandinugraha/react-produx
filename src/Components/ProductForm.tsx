@@ -1,6 +1,11 @@
 import { Button, makeStyles, TextField } from '@material-ui/core'
 import React  from 'react'
 import useForm from '../Hooks/useForm'
+import { Product } from '../Store/product/productTypes'
+
+interface Props {
+  payloadHandler: (product: Product) => void
+}
 
 const useStyle = makeStyles(theme => (
   {
@@ -14,13 +19,25 @@ const useStyle = makeStyles(theme => (
   }
 ))
 
-export const ProductForm = () => {
+export const ProductForm = (props: Props) => {
   const classes = useStyle()
   const [name, setName, setNameForm] = useForm("")
   const [description, setDescription, setDescriptionForm] = useForm("")
   const [price, setPrice, setPriceForm] = useForm("")
 
   const clickAddProductHandler = () => {
+    const timeStampNow = new Date().getTime()
+
+    const product: Product = {
+      id: Math.random(),
+      name, description, 
+      price: +price,
+      updatedAt: timeStampNow,
+      createdAt: timeStampNow
+    }
+
+    props.payloadHandler(product)
+
     setName("")
     setDescription("")
     setPrice("")
