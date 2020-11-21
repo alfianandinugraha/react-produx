@@ -29,6 +29,6 @@ export const FETCH_PRODUCT_FAILURE: ProductFetchTypes = "FETCH_PRODUCT_FAILURE"
 export interface ProductAction extends ProductFetchAction { }
 
 export interface ProductProps {
-  product?: ProductStore,
-  fetchProductRequest?: () => ProductFetchAction
+  product: ProductStore,
+  fetchProductRequest: () => ProductFetchAction
 }
