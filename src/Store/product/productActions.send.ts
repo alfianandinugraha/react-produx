@@ -9,20 +9,21 @@ import {
 export function sendProductRequest(product: Product): ProductAction {
   return {
     type: SEND_PRODUCT_REQUEST,
-    data: [product]
+    payload: [product]
   }
 }
 
 export function sendProductSuccess(product: Product): ProductAction {
   return {
     type: SEND_PRODUCT_SUCCESS,
-    data: [product]
+    payload: [product]
   }
 }
 
 export function sendProductFailure(error: string): ProductAction {
   return {
     type: SEND_PRODUCT_FAILURE,
-    error: error
+    payload: [],
+    message: error
   }
 }
