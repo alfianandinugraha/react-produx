@@ -28,13 +28,13 @@ export const productReducer = (
       return {
         ...store,
         isLoading: false,
-        data: action.data
+        data: action.payload
       }
     case FETCH_PRODUCT_FAILURE: 
       return {
         ...store,
         isLoading: false,
-        error: action.error
+        error: action.message
       }
     default:
       return store

@@ -1,4 +1,4 @@
-export type ProductFetchTypes =
+export type FetchProductTypes =
   "FETCH_PRODUCT_REQUEST" |
   "FETCH_PRODUCT_SUCCESS" |
   "FETCH_PRODUCT_FAILURE"
@@ -14,10 +14,6 @@ export interface ProductStore {
   error?: string
 }
 
-export interface ProductFetchAction extends ProductStore{
-  type: ProductFetchTypes
-}
-
 export interface Product {
   id: number,
   name: string,
@@ -27,19 +23,21 @@ export interface Product {
   updatedAt: number
 }
 
-export const FETCH_PRODUCT_REQUEST: ProductFetchTypes = "FETCH_PRODUCT_REQUEST"
-export const FETCH_PRODUCT_SUCCESS: ProductFetchTypes = "FETCH_PRODUCT_SUCCESS"
-export const FETCH_PRODUCT_FAILURE: ProductFetchTypes = "FETCH_PRODUCT_FAILURE"
+export const FETCH_PRODUCT_REQUEST: FetchProductTypes = "FETCH_PRODUCT_REQUEST"
+export const FETCH_PRODUCT_SUCCESS: FetchProductTypes = "FETCH_PRODUCT_SUCCESS"
+export const FETCH_PRODUCT_FAILURE: FetchProductTypes = "FETCH_PRODUCT_FAILURE"
 
 export const SEND_PRODUCT_REQUEST: SendProductTypes = "SEND_PRODUCT_REQUEST"
 export const SEND_PRODUCT_SUCCESS: SendProductTypes = "SEND_PRODUCT_SUCCESS"
 export const SEND_PRODUCT_FAILURE: SendProductTypes = "SEND_PRODUCT_FAILURE"
 
-export interface ProductAction extends ProductStore { 
-  type: ProductFetchAction | SendProductTypes
+export interface ProductAction { 
+  type: FetchProductTypes | SendProductTypes,
+  payload: Product[],
+  message?: string
 }
 
 export interface ProductProps {
   product: ProductStore,
-  fetchProductRequest: () => ProductFetchAction
+  fetchProductRequest: () => void
 }

@@ -4,27 +4,29 @@ import {
   FETCH_PRODUCT_FAILURE,
   FETCH_PRODUCT_REQUEST, 
   FETCH_PRODUCT_SUCCESS, 
-  Product, 
-  ProductFetchAction
+  Product,
+  ProductAction
 } from './productTypes'
 
-export function fetchProductRequest(): ProductFetchAction {
+export function fetchProductRequest(): ProductAction {
   return {
-    type: FETCH_PRODUCT_REQUEST
+    type: FETCH_PRODUCT_REQUEST,
+    payload: []
   }
 }
 
-export function fetchProductSuccess(products: Product[]): ProductFetchAction {
+export function fetchProductSuccess(products: Product[]): ProductAction {
   return {
     type: FETCH_PRODUCT_SUCCESS,
-    data: products
+    payload: products
   }
 }
 
-export function fetchProductFailure(error: string): ProductFetchAction {
+export function fetchProductFailure(error: string): ProductAction {
   return {
     type: FETCH_PRODUCT_FAILURE,
-    error: error
+    payload: [],
+    message: error
   }
 }
 
