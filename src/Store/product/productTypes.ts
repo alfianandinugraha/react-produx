@@ -37,7 +37,11 @@ export interface ProductAction {
   message?: string
 }
 
+export interface SendProductProps {
+  sendProductRequest: (product: Product) => void
+}
+
 export interface ProductProps {
   product: ProductStore,
-  fetchProductRequest: () => void
+  fetchProductRequest: () => void,
 }

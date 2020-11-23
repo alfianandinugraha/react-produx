@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
   ProductAction,
-  ProductStore
+  ProductStore,
+  SEND_PRODUCT_REQUEST
 } from './productTypes';
 
 const defaultProductStore: ProductStore = {
@@ -35,6 +36,11 @@ export const productReducer = (
         ...store,
         isLoading: false,
         error: action.message
+      }
+    case SEND_PRODUCT_REQUEST:
+      return {
+        ...store,
+        isLoading: true
       }
     default:
       return store
