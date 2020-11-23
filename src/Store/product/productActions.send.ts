@@ -1,3 +1,4 @@
+import { takeEvery } from 'redux-saga/effects';
 import { 
   Product, 
   ProductAction, 
@@ -26,4 +27,12 @@ export function sendProductFailure(error: string): ProductAction {
     payload: [],
     message: error
   }
+}
+
+export function* sendProduct(action: ProductAction) {
+  yield console.log(action)
+}
+
+export function* watchSendProduct() {
+  yield takeEvery(SEND_PRODUCT_REQUEST, sendProduct)
 }
