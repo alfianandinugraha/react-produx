@@ -1,7 +1,7 @@
 import { Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core'
 import React from 'react'
 import { Product } from '../Store/product/productTypes'
-import { ProductRow } from './ProductRow'
+import ProductRow from './ProductRow'
 
 interface Props {
   products: Product[]
@@ -22,7 +22,7 @@ export const ProductsTable = (props: Props) => {
         </TableHead>
         <TableBody>
           {
-            props.products.map((product: Product) => <ProductRow product={product}/>)
+            props.products.map((product: Product) => <ProductRow product={product} key={product.id}/>)
           }
         </TableBody>
       </Table>
