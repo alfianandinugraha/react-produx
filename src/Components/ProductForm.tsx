@@ -4,6 +4,8 @@ import useForm from '../Hooks/useForm'
 import { Product } from '../Store/product/productTypes'
 
 interface Props {
+  product?: Product
+  buttonMessage?: string
   payloadHandler: (product: Product) => void
 }
 
@@ -21,22 +23,23 @@ const useStyle = makeStyles(theme => (
 
 export const ProductForm = (props: Props) => {
   const classes = useStyle()
-  const [name, setName, setNameForm] = useForm("")
-  const [description, setDescription, setDescriptionForm] = useForm("")
-  const [price, setPrice, setPriceForm] = useForm("")
+  const { product } = props
+  const [name, setName, setNameForm] = useForm(product?.name)
+  const [description, setDescription, setDescriptionForm] = useForm(product?.description)
+  const [price, setPrice, setPriceForm] = useForm(product?.price.toString())
 
   const clickAddProductHandler = () => {
     const timeStampNow = new Date().getTime()
 
-    const product: Product = {
-      id: Math.random(),
+    const productPayload: Product = {
+      id: product?.id || Math.random(),
       name, description, 
       price: +price,
       updatedAt: timeStampNow,
-      createdAt: timeStampNow
+      createdAt: product?.createdAt || timeStampNow
     }
 
-    props.payloadHandler(product)
+    props.payloadHandler(productPayload)
 
     setName("")
     setDescription("")
@@ -66,7 +69,9 @@ export const ProductForm = (props: Props) => {
           onChange={setPriceForm}
           value={price}
         ></TextField>
-        <Button variant="contained" color="primary" onClick={clickAddProductHandler}>+ Product</Button>
+        <Button variant="contained" color="primary" onClick={clickAddProductHandler}>
+          {props.buttonMessage || "+ Product"}
+        </Button>
       </div>
     </>
   )
