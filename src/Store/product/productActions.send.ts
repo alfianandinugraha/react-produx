@@ -1,4 +1,5 @@
-import { takeEvery } from 'redux-saga/effects';
+import Axios from 'axios';
+import { put, takeEvery } from 'redux-saga/effects';
 import { 
   Product, 
   ProductAction, 
@@ -30,7 +31,15 @@ export function sendProductFailure(error: string): ProductAction {
 }
 
 export function* sendProduct(action: ProductAction) {
-  yield console.log(action)
+  try {
+    const { payload } = action
+    const [data] = payload
+    
+    yield Axios.post("http://localhost:5500/products", data)
+    yield put(sendProductSuccess(data))
+  } catch (e) {
+    yield put(sendProductFailure(e.message))
+  }
 }
 
 export function* watchSendProduct() {
