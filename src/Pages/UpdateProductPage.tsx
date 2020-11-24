@@ -1,10 +1,12 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { ProductForm } from '../Components/ProductForm'
-import { Product } from '../Store/product/productTypes'
+import { updateProductRequest } from '../Store/product/productActions.update'
+import { Product, UpdateProductProps } from '../Store/product/productTypes'
 
-export const UpdateProductPage = () => {
+const UpdateProductPage = (props: UpdateProductProps) => {
   const params = useParams<{ id: string }>()
   const id = +params.id
 
@@ -16,12 +18,8 @@ export const UpdateProductPage = () => {
       .catch(err => console.log({ err }))
   }, [])
 
-  useEffect(() => {
-    console.log({product})
-  }, [product])
-
   const payloadProductFormHandler = (payload: Product) => {
-    console.log(payload)
+    props.updateProductRequest(payload)
   }
 
   return (
@@ -41,3 +39,11 @@ export const UpdateProductPage = () => {
     </div>
   )
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    updateProductRequest: (product: Product) => dispatch(updateProductRequest(product))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(UpdateProductPage)
