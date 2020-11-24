@@ -13,6 +13,11 @@ export type DeleteProductTypes =
   "DELETE_PRODUCT_SUCCESS" |
   "DELETE_PRODUCT_FAILURE"
 
+export type UpdateProductTypes =
+  "UPDATE_PRODUCT_REQUEST" |
+  "UPDATE_PRODUCT_SUCCESS" |
+  "UPDATE_PRODUCT_FAILURE"
+
 export interface ProductStore {
   data?: Product[],
   isLoading?: boolean,
@@ -40,8 +45,12 @@ export const DELETE_PRODUCT_REQUEST: DeleteProductTypes = "DELETE_PRODUCT_REQUES
 export const DELETE_PRODUCT_SUCCESS: DeleteProductTypes = "DELETE_PRODUCT_SUCCESS"
 export const DELETE_PRODUCT_FAILURE: DeleteProductTypes = "DELETE_PRODUCT_FAILURE"
 
+export const UPDATE_PRODUCT_REQUEST: UpdateProductTypes = "UPDATE_PRODUCT_REQUEST"
+export const UPDATE_PRODUCT_SUCCESS: UpdateProductTypes = "UPDATE_PRODUCT_SUCCESS"
+export const UPDATE_PRODUCT_FAILURE: UpdateProductTypes = "UPDATE_PRODUCT_FAILURE"
+
 export interface ProductAction { 
-  type: FetchProductTypes | SendProductTypes | DeleteProductTypes,
+  type: FetchProductTypes | SendProductTypes | DeleteProductTypes | UpdateProductTypes,
   payload: Product[],
   message?: string
 }
@@ -52,6 +61,10 @@ export interface DeleteProductProps {
 
 export interface SendProductProps {
   sendProductRequest: (product: Product) => void
+}
+
+export interface UpdateProductProps {
+  updateProductRequest: (product: Product) => void
 }
 
 export interface ProductProps {
