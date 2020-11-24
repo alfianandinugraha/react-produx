@@ -21,7 +21,9 @@ export const UpdateProductPage = () => {
 
   return (
     <div>
-      <h1>Update Product #{id}</h1>
+      {
+        !product ? (<h1>Product Not Found</h1>) : (<h1>Update Product #{id}</h1>)
+      }
     </div>
   )
 }
