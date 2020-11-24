@@ -7,7 +7,10 @@ import {
   FETCH_PRODUCT_SUCCESS,
   ProductAction,
   ProductStore,
-  SEND_PRODUCT_REQUEST
+  SEND_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_FAILURE,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS
 } from './productTypes';
 
 const defaultProductStore: ProductStore = {
@@ -62,6 +65,27 @@ export const productReducer = (
         ...store,
         isLoading: false
       }
+    case UPDATE_PRODUCT_REQUEST: {
+      return {
+        ...store,
+        isLoading: true
+      }
+    }
+    case UPDATE_PRODUCT_SUCCESS: {
+      return {
+        ...store,
+        isLoading: false,
+        data: store.data && store.data.splice(
+          store.data.findIndex(product => product.id === action.payload[0].id), 1, action.payload[0]
+        )
+      }
+    }
+    case UPDATE_PRODUCT_FAILURE: {
+      return {
+        ...store,
+        isLoading: false
+      }
+    }
     default:
       return store
   }
