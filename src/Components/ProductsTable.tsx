@@ -1,7 +1,7 @@
-import { Table, TableHead, TableRow, TableCell, TableBody, Button } from '@material-ui/core'
+import { Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core'
 import React from 'react'
 import { Product } from '../Store/product/productTypes'
-import { Link } from 'react-router-dom'
+import { ProductRow } from './ProductRow'
 
 interface Props {
   products: Product[]
@@ -22,25 +22,7 @@ export const ProductsTable = (props: Props) => {
         </TableHead>
         <TableBody>
           {
-            props.products.map((product: Product) => {
-              const { id, name, description, price } = product
-              return (
-                <TableRow key={id}>
-                  <TableCell>{id}</TableCell>
-                  <TableCell>{name}</TableCell>
-                  <TableCell>{description}</TableCell>
-                  <TableCell>{price}</TableCell>
-                  <TableCell>
-                    <div style={{ display: "flex" }}>
-                      <Link to={`/products/${id}/update`} style={{ textDecoration: "none" }}>
-                        <Button variant="contained" color="primary">Update</Button>
-                      </Link>
-                      <Button variant="contained" color="secondary">Delete</Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              )
-            })
+            props.products.map((product: Product) => <ProductRow product={product}/>)
           }
         </TableBody>
       </Table>
